@@ -1,2 +1,4 @@
 \yt_myenv
 \__pycache__
+\.env
+\.gitignore
