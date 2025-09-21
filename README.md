@@ -95,7 +95,11 @@ CLI Mode
 
 Ask a question directly from the command line:
 
-docker compose exec app python src/main.py --q "What storytelling techniques help with retention?"
+=> docker compose exec app python src/main.py --q "What storytelling techniques help with retention?"
+=> docker compose exec app python src/main.py --q "How should I start my video intro?"
+=> docker compose exec app python src/main.py --q "What does Hayden say about improving retention?"
+=> docker compose exec app python src/main.py --q "What thumbnail strategies did Aprilynne mention?"
+
 
 
 Example output:
