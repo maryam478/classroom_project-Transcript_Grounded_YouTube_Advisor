@@ -9,27 +9,20 @@ router = APIRouter()
 class AskRequest(BaseModel):
     question: str
 
-class GroundHit(BaseModel):
-    title: str
-    chunk_id: str
-    start_time: str
-    end_time: str
-    text: str
-
 class AskResponse(BaseModel):
     answer: str
-    grounding: list[GroundHit]
+    grounding: list
 
 retriever = WeaviateRetriever()
 generator = OpenAIGenerator()
 
 @router.post("/ask", response_model=AskResponse)
 def ask(req: AskRequest):
-    q = req.question.strip()
-    if not q:
+    if not req.question.strip():
         raise HTTPException(status_code=400, detail="Empty question")
-    hits = retriever.retrieve(q, top_k=5)
+
+    hits = retriever.retrieve(req.question, top_k=5)
     if not hits:
-        return {"answer": "I don't know — the transcripts don't cover that.", "grounding": []}
-    answer = generator.generate(q, hits)
+        return {"answer": "I don't know — transcripts don’t cover that.", "grounding": []}
+    answer = generator.generate(req.question, hits)
     return {"answer": answer, "grounding": hits}

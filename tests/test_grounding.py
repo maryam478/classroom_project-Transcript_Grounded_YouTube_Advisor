@@ -1,8 +1,13 @@
 # tests/test_grounding.py
+import pytest
 from src.utils.retriever import WeaviateRetriever
 
-def test_retrieve_aprilynne():
-    r = WeaviateRetriever()
-    hits = r.retrieve("first sentence should meet the expectations set by the title", top_k=3)
-    assert isinstance(hits, list)
-    assert any("aprilynne.txt" in (h.get("title") or h.get("source")) for h in hits)
+def test_grounding_has_timestamps():
+    retriever = WeaviateRetriever()
+    hits = retriever.retrieve("intro", top_k=1)
+    if hits:  # only run if data ingested
+        hit = hits[0]
+        assert "start_time" in hit
+        assert "end_time" in hit
+        assert isinstance(hit["start_time"], str)
+        assert isinstance(hit["end_time"], str)

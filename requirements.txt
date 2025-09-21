@@ -1,7 +1,11 @@
-fastapi==0.95.2
+# fastapi==0.95.2
+fastapi==0.110.0
+starlette==0.36.3
+httpx==0.24.1
+bert-score==0.3.13
 uvicorn[standard]==0.22.0
 weaviate-client==3.22.1
-openai==1.12.0
+openai>=1.12.0,<2.0.0   # ✅ ensure new client, but stable within v1
 python-dotenv==1.0.0
 pydantic==1.10.12
 pytest==7.4.2
