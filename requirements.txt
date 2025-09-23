@@ -11,3 +11,9 @@ pydantic==1.10.12
 pytest==7.4.2
 tqdm==4.66.1
 requests==2.31.0
+
+langchain
+langchain-docling
+langchain_huggingface
+faiss-cpu
+
