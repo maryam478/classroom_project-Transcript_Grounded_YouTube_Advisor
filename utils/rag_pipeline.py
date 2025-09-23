@@ -14,7 +14,6 @@ load_dotenv()
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=OPENAI_API_KEY)
 
-pdf_path = "example.pdf"  # change to your PDF path
 
 # ---------------------------------------------------
 # 2. Convert PDF → DoclingDocument
